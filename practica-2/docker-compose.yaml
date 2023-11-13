@@ -14,10 +14,13 @@ services:
       DB_NAME: test
       DB_USERNAME: sa
       DB_PASSWORD:
+      SPRING_REDIS_HOST: redis
+      SPRING_REDIS_PORT: 6379
     networks:
       - red-app
     depends_on:
       - h2db
+      - redis
 
   app2:
     build:
@@ -32,10 +35,13 @@ services:
       DB_NAME: test
       DB_USERNAME: sa
       DB_PASSWORD:
+      SPRING_REDIS_HOST: redis
+      SPRING_REDIS_PORT: 6379
     networks:
       - red-app
     depends_on:
       - h2db
+      - redis
 
   app3:
     build:
@@ -50,10 +56,13 @@ services:
       DB_NAME: test
       DB_USERNAME: sa
       DB_PASSWORD:
+      SPRING_REDIS_HOST: redis
+      SPRING_REDIS_PORT: 6379
     networks:
       - red-app
     depends_on:
       - h2db
+      - redis
 
   h2db:
     image: oscarfonts/h2
@@ -81,6 +90,14 @@ services:
       - app1
       - app2
       - app3
+
+  redis:
+    image: redis
+    container_name: redis
+    ports:
+      - "6379:6379"
+    networks:
+      - red-app
 
 networks:
   red-app:
