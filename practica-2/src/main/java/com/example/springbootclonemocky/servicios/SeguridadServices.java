@@ -42,8 +42,10 @@ public class SeguridadServices implements UserDetailsService  {
         System.out.println("Creación del usuario y rol en la base de datos");
 
 
-        Rol rolAdmin = new Rol("ROLE_ADMIN");
+        //Rol rolAdmin = new Rol("ROLE_ADMIN");
         //rolRepository.save(rolAdmin);
+        Rol rolAdmin = rolRepository.findByRole("ROLE_ADMIN");
+
 
        Rol rolUsuario = new Rol("ROLE_USER");
         //rolRepository.save(rolUsuario);
